@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Painel completo para controle de estoque, compras, vendas, validades e relatórios.">
+  <title>Estoque Azul | Controle Inteligente</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Estoque Azul - início">
+        <span class="brand-mark">EA</span>
+        <span><strong>Estoque Azul</strong><small>Controle inteligente</small></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-view="dashboard"><span>▦</span> Visão geral</button>
+        <button class="nav-item" data-view="produtos"><span>□</span> Produtos</button>
+        <button class="nav-item" data-view="movimentacoes"><span>⇄</span> Movimentações</button>
+        <button class="nav-item" data-view="vencimentos"><span>◷</span> Vencimentos</button>
+        <button class="nav-item" data-view="relatorios"><span>▤</span> Relatórios</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <p class="eyebrow">Saúde do estoque</p>
+        <div class="health-line"><strong id="healthScore">92%</strong><span>saudável</span></div>
+        <div class="progress"><span id="healthBar" style="width:92%"></span></div>
+        <small>Calculado por disponibilidade, validade e estoque mínimo.</small>
+      </div>
+
+      <p class="sidebar-footer">Dados armazenados neste navegador.</p>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+          <div>
+            <p class="eyebrow" id="todayLabel"></p>
+            <h1 id="viewTitle">Visão geral do estoque</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <label class="global-search">
+            <span>⌕</span>
+            <input id="globalSearch" type="search" placeholder="Buscar produto ou SKU" autocomplete="off">
+          </label>
+          <button class="button secondary" id="restoreButton">Restaurar</button>
+          <button class="button secondary" id="backupButton">Backup</button>
+          <button class="button primary" data-open-modal="productModal">+ Novo produto</button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <div class="notice-row" id="noticeRow"></div>
+
+        <div class="kpi-grid">
+          <article class="kpi-card blue">
+            <div class="kpi-top"><span>Produtos ativos</span><i>□</i></div>
+            <strong id="kpiProducts">0</strong>
+            <small id="kpiProductsNote">0 categorias cadastradas</small>
+          </article>
+          <article class="kpi-card cyan">
+            <div class="kpi-top"><span>Unidades em estoque</span><i>▥</i></div>
+            <strong id="kpiUnits">0</strong>
+            <small id="kpiUnitsNote">Disponibilidade atual</small>
+          </article>
+          <article class="kpi-card green">
+            <div class="kpi-top"><span>Valor de venda</span><i>R$</i></div>
+            <strong id="kpiSaleValue">R$ 0</strong>
+            <small id="kpiMarginNote">Margem estimada de 0%</small>
+          </article>
+          <article class="kpi-card amber">
+            <div class="kpi-top"><span>Atenção necessária</span><i>!</i></div>
+            <strong id="kpiAlerts">0</strong>
+            <small id="kpiAlertsNote">Estoque baixo ou validade próxima</small>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel panel-wide">
+            <div class="panel-heading">
+              <div><p class="eyebrow">Fluxo operacional</p><h2>Movimentações dos últimos 14 dias</h2></div>
+              <div class="legend"><span class="legend-in">Entradas</span><span class="legend-out">Saídas</span></div>
+            </div>
+            <canvas id="movementChart" height="260" aria-label="Gráfico de entradas e saídas"></canvas>
+          </article>
+          <article class="panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">Distribuição</p><h2>Status do estoque</h2></div>
+            </div>
+            <div class="donut-layout">
+              <canvas id="statusChart" width="220" height="220" aria-label="Gráfico de status"></canvas>
+              <div id="statusLegend" class="donut-legend"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid lower-grid">
+          <article class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">Capital imobilizado</p><h2>Valor por categoria</h2></div></div>
+            <canvas id="categoryChart" height="260" aria-label="Gráfico de valor por categoria"></canvas>
+          </article>
+          <article class="panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">Prioridades</p><h2>Itens que exigem ação</h2></div>
+              <button class="text-button" data-go-view="produtos">Ver todos →</button>
+            </div>
+            <div class="action-list" id="actionList"></div>
+          </article>
+        </div>
+
+        <article class="panel full-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Atividade recente</p><h2>Últimas movimentações</h2></div>
+            <button class="text-button" data-go-view="movimentacoes">Abrir histórico →</button>
+          </div>
+          <div class="table-wrap"><table id="recentTable"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Valor</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
+        </article>
+      </section>
+
+      <section class="view" id="produtos">
+        <div class="toolbar panel">
+          <div class="filter-group">
+            <label>Categoria<select id="categoryFilter"><option value="">Todas</option></select></label>
+            <label>Status<select id="statusFilter"><option value="">Todos</option><option value="normal">Normal</option><option value="baixo">Estoque baixo</option><option value="zerado">Zerado</option><option value="vencendo">Próximo do vencimento</option><option value="vencido">Vencido</option></select></label>
+          </div>
+          <div class="toolbar-actions"><button class="button secondary" id="exportProductsCsv">Exportar CSV</button><button class="button primary" data-open-modal="productModal">+ Novo produto</button></div>
+        </div>
+        <article class="panel full-panel">
+          <div class="panel-heading"><div><p class="eyebrow">Catálogo</p><h2>Produtos cadastrados</h2></div><span class="count-chip" id="productCount">0 itens</span></div>
+          <div class="table-wrap large-table"><table id="productsTable"><thead><tr><th>SKU / Produto</th><th>Categoria</th><th>Compra</th><th>Dias corridos</th><th>Estoque</th><th>Custo</th><th>Venda</th><th>Margem</th><th>Validade</th><th>Status</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
+        </article>
+      </section>
+
+      <section class="view" id="movimentacoes">
+        <div class="section-intro">
+          <div><p class="eyebrow">Entradas, saídas, perdas e ajustes</p><h2>Histórico de movimentações</h2><p>Registre cada alteração para manter o saldo e os relatórios atualizados.</p></div>
+          <button class="button primary" data-open-modal="movementModal">+ Registrar movimentação</button>
+        </div>
+        <div class="mini-kpis" id="movementKpis"></div>
+        <article class="panel full-panel">
+          <div class="toolbar inline-toolbar">
+            <div class="filter-group"><label>Tipo<select id="movementTypeFilter"><option value="">Todos</option><option>Entrada</option><option>Saída</option><option>Perda</option><option>Ajuste +</option><option>Ajuste -</option></select></label><label>Período<select id="movementPeriodFilter"><option value="all">Todo o período</option><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option></select></label></div>
+            <button class="button secondary" id="exportMovementsCsv">Exportar CSV</button>
+          </div>
+          <div class="table-wrap"><table id="movementsTable"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Valor unitário</th><th>Total</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
+        </article>
+      </section>
+
+      <section class="view" id="vencimentos">
+        <div class="section-intro"><div><p class="eyebrow">Gestão de perecíveis</p><h2>Calendário de vencimentos</h2><p>Acompanhe os lotes com prioridade e reduza perdas.</p></div></div>
+        <div class="expiry-summary" id="expirySummary"></div>
+        <div class="dashboard-grid">
+          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Linha do tempo</p><h2>Produtos por faixa de vencimento</h2></div></div><canvas id="expiryChart" height="280"></canvas></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">Recomendação</p><h2>Plano de ação</h2></div></div><div class="recommendations" id="recommendations"></div></article>
+        </div>
+        <article class="panel full-panel"><div class="panel-heading"><div><p class="eyebrow">Lista priorizada</p><h2>Vencimentos</h2></div></div><div class="table-wrap"><table id="expiryTable"><thead><tr><th>Produto</th><th>Lote / SKU</th><th>Validade</th><th>Dias restantes</th><th>Estoque atual</th><th>Valor em risco</th><th>Prioridade</th></tr></thead><tbody></tbody></table></div></article>
+      </section>
+
+      <section class="view" id="relatorios">
+        <div class="section-intro"><div><p class="eyebrow">Indicadores para decisão</p><h2>Relatórios gerenciais</h2><p>Uma leitura rápida de giro, margem, investimento e desempenho diário.</p></div><button class="button secondary" id="printReport">Imprimir relatório</button></div>
+        <div class="report-grid" id="reportCards"></div>
+        <div class="dashboard-grid">
+          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Dia a dia</p><h2>Vendas por dia — últimos 31 dias</h2></div></div><canvas id="dailySalesChart" height="300"></canvas></article>
+          <article class="panel"><div class="panel-heading"><div><p class="eyebrow">Ranking</p><h2>Produtos mais vendidos</h2></div></div><div class="ranking-list" id="rankingList"></div></article>
+        </div>
+        <article class="panel full-panel"><div class="panel-heading"><div><p class="eyebrow">Resumo completo</p><h2>Indicadores por produto</h2></div><button class="button secondary" id="exportReportCsv">Exportar relatório</button></div><div class="table-wrap"><table id="reportTable"><thead><tr><th>Produto</th><th>Comprado há</th><th>Estoque atual</th><th>Unidades vendidas</th><th>Giro</th><th>Receita</th><th>Custo vendido</th><th>Lucro bruto</th><th>Margem</th></tr></thead><tbody></tbody></table></div></article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-card">
+      <div class="modal-heading"><div><p class="eyebrow">Cadastro</p><h2 id="productModalTitle">Novo produto</h2></div><button class="icon-button modal-close" aria-label="Fechar">×</button></div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <div class="form-grid">
+          <label class="span-2">Nome do produto<input id="productName" required maxlength="80" placeholder="Ex.: Arroz integral 5 kg"></label>
+          <label>SKU<input id="productSku" required maxlength="24" placeholder="Ex.: ARR-001"></label>
+          <label>Categoria<input id="productCategory" required maxlength="40" placeholder="Ex.: Mercearia"></label>
+          <label>Fornecedor<input id="productSupplier" maxlength="60" placeholder="Ex.: Distribuidora Alfa"></label>
+          <label>Unidade<select id="productUnit"><option>un</option><option>kg</option><option>cx</option><option>pct</option><option>lt</option></select></label>
+          <label>Preço de custo (R$)<input id="productCost" required type="number" min="0" step="0.01"></label>
+          <label>Preço de venda (R$)<input id="productPrice" required type="number" min="0" step="0.01"></label>
+          <label>Estoque inicial<input id="productInitial" required type="number" min="0" step="1"></label>
+          <label>Estoque mínimo<input id="productMinimum" required type="number" min="0" step="1"></label>
+          <label>Data da compra<input id="productPurchase" required type="date"></label>
+          <label>Data de validade<input id="productExpiry" type="date"></label>
+          <label>Localização<input id="productLocation" maxlength="30" placeholder="Ex.: A1-P2"></label>
+        </div>
+        <div class="form-actions"><button type="button" class="button ghost modal-close">Cancelar</button><button type="submit" class="button primary">Salvar produto</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="movementModal" role="dialog" aria-modal="true" aria-labelledby="movementModalTitle">
+    <div class="modal-card compact">
+      <div class="modal-heading"><div><p class="eyebrow">Atualização de saldo</p><h2 id="movementModalTitle">Registrar movimentação</h2></div><button class="icon-button modal-close" aria-label="Fechar">×</button></div>
+      <form id="movementForm">
+        <div class="form-grid">
+          <label class="span-2">Produto<select id="movementProduct" required></select></label>
+          <label>Tipo<select id="movementType" required><option>Entrada</option><option>Saída</option><option>Perda</option><option>Ajuste +</option><option>Ajuste -</option></select></label>
+          <label>Quantidade<input id="movementQuantity" required type="number" min="1" step="1"></label>
+          <label>Data<input id="movementDate" required type="date"></label>
+          <label>Valor unitário (R$)<input id="movementUnitValue" type="number" min="0" step="0.01"></label>
+          <label class="span-2">Observação<input id="movementNote" maxlength="100" placeholder="Ex.: Venda balcão, reposição do fornecedor..."></label>
+        </div>
+        <div class="form-actions"><button type="button" class="button ghost modal-close">Cancelar</button><button type="submit" class="button primary">Registrar</button></div>
+      </form>
+    </div>
+  </div>
+
+  <input id="restoreInput" type="file" accept="application/json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
