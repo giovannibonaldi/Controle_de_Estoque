@@ -1,0 +1,139 @@
+/* Estoque Azul V10 · Homepage real e responsiva, inspirada na referência visual fornecida. */
+#landingPage{display:block;color:#182b48;background:#f6faff;font-family:Inter,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.55;overflow:hidden}
+body.auth-ready #landingPage{display:none!important}
+#landingPage *{box-sizing:border-box}
+#landingPage .lp-wrap{max-width:1250px;margin-inline:auto;padding-inline:30px}
+#landingPage button{cursor:pointer}
+#landingPage a{text-decoration:none}
+#landingPage .lp-hero{position:relative;color:white;background:linear-gradient(112deg,#051455 0%,#073c98 55%,#058ced 100%);padding-bottom:132px;clip-path:polygon(0 0,100% 0,100% 85%,86% 98%,45% 100%,8% 88%,0 70%)}
+#landingPage .lp-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 81% 18%,rgba(61,211,255,.26),transparent 33%),radial-gradient(circle at 13% 75%,rgba(1,62,159,.45),transparent 34%);pointer-events:none}
+#landingPage .lp-hero:after{content:"";position:absolute;right:3%;bottom:28%;width:120px;height:120px;border:1px solid rgba(255,255,255,.13);border-radius:27%;transform:rotate(33deg);pointer-events:none}
+#landingPage .lp-nav{position:relative;z-index:2;min-height:100px;display:flex;gap:30px;align-items:center;justify-content:space-between}
+#landingPage .lp-brand{display:flex;align-items:center;gap:12px;color:white;flex-shrink:0;font-size:19px;letter-spacing:-.8px}
+#landingPage .lp-brand span span,#landingPage .lp-footer span span{color:#70dcff}
+#landingPage .lp-brand sup{font-size:10px;color:#73dcff;vertical-align:super;margin-left:5px;letter-spacing:.03em}
+#landingPage .lp-brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;font-size:24px;color:#fff;background:linear-gradient(140deg,#267cf3,#29c9ed);box-shadow:0 8px 25px rgba(2,24,78,.3)}
+#landingPage .lp-nav nav{display:flex;gap:32px;margin:auto}
+#landingPage .lp-nav nav a{font-weight:650;color:#dbeeff;font-size:13px;transition:.2s}
+#landingPage .lp-nav nav a:hover{color:#fff;text-decoration:underline;text-underline-offset:8px}
+#landingPage .lp-header-actions{display:flex;align-items:center;gap:20px}
+#landingPage .lp-text-btn{border:0;background:none;color:white;font-size:13px;font-weight:700}
+#landingPage .lp-btn{border:1px solid transparent;border-radius:10px;min-height:45px;display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:11px 21px;font-size:13px;font-weight:800;white-space:nowrap;transition:transform .22s,box-shadow .22s,background .22s}
+#landingPage .lp-btn:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,23,62,.2)}
+#landingPage .lp-btn-cyan{background:#04c5f4;color:#002c5d;box-shadow:0 7px 23px rgba(0,191,255,.2)}
+#landingPage .lp-btn-orange{background:linear-gradient(120deg,#ff722f,#ff9f31);color:white;box-shadow:0 11px 25px rgba(255,101,35,.2)}
+#landingPage .lp-btn-outline{border-color:rgba(255,255,255,.58);color:#fff;background:rgba(255,255,255,.06)}
+#landingPage .lp-btn-blue{background:#176fe3;color:white}
+#landingPage .lp-btn-white{background:white;color:#1361ba}
+#landingPage .lp-hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;min-height:490px}
+#landingPage .lp-hero-copy{padding:30px 0 15px}
+#landingPage .lp-overline{font-size:11px;font-weight:850;letter-spacing:.15em;color:#2b80e7;text-transform:uppercase;margin:0 0 16px}
+#landingPage .lp-hero .lp-overline{color:#78e9ff}
+#landingPage .lp-hero h1{font-size:clamp(46px,4.8vw,72px);font-weight:850;letter-spacing:-.065em;line-height:1.06;margin:0 0 25px;max-width:620px}
+#landingPage .lp-hero h1 em{font-style:normal;color:#4fe6ff}
+#landingPage .lp-hero h1>span{font-size:clamp(25px,2.35vw,34px);line-height:1.2;letter-spacing:-.038em;display:block;margin-top:13px;font-weight:620;color:#e3f4ff}
+#landingPage .lp-hero-desc{color:#d4e9ff;font-size:15px;line-height:1.75;max-width:520px;margin:0 0 25px}
+#landingPage .lp-cta-row{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:28px}
+#landingPage .lp-hero-foot{display:flex;flex-wrap:wrap;gap:12px 22px;font-size:11px;font-weight:650;color:#b4ecff}
+#landingPage .lp-preview{position:relative;padding:33px 12px 45px 18px}
+#landingPage .lp-preview-window{position:relative;background:#fff;color:#152f4f;border-radius:20px;border:7px solid #074285;box-shadow:0 24px 40px rgba(0,13,63,.35);overflow:hidden;transform:rotate(.6deg)}
+#landingPage .lp-window-bar{height:37px;background:#f9fbff;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 15px;border-bottom:1px solid #e3edf8;font-size:11px}
+#landingPage .lp-window-bar>span{color:#95b8e0;font-size:10px;letter-spacing:3px}
+#landingPage .lp-window-bar small{color:#137ce2;font-weight:800}
+#landingPage .lp-window-main{display:flex;min-height:312px}
+#landingPage .lp-preview-side{background:#0a3a80;color:#add7ff;width:49px;display:flex;flex-direction:column;gap:12px;align-items:center;padding:15px 0;font-weight:700}
+#landingPage .lp-preview-side b{margin-bottom:8px;color:#38cafa}
+#landingPage .lp-preview-side .selected{background:#2b8be6;padding:3px 10px;border-radius:7px;color:white}
+#landingPage .lp-preview-inside{padding:18px 19px;width:calc(100% - 49px);background:#f5f9fe}
+#landingPage .lp-preview-inside h3{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;margin:0 0 14px;color:#15385b}
+#landingPage .lp-preview-inside h3 small{font-size:9px;color:#7793ae;letter-spacing:.08em}
+#landingPage .lp-preview-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+#landingPage .lp-preview-metrics>div{background:white;border:1px solid #e5eef9;border-radius:9px;padding:11px 9px;display:grid;gap:2px}
+#landingPage .lp-preview-metrics small{font-size:9px;color:#6887a5}
+#landingPage .lp-preview-metrics strong{font-size:22px;color:#0c4087;letter-spacing:-.05em}
+#landingPage .lp-preview-metrics span{font-size:8px;color:#7389a2}
+#landingPage .lp-preview-graph{background:white;border:1px solid #e5eef9;border-radius:10px;padding:12px;margin:10px 0 8px}
+#landingPage .lp-graph-head{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:10px;color:#193855}
+#landingPage .lp-graph-head small{color:#93a8b8;font-size:9px}
+#landingPage .lp-chart-bars{height:81px;margin:12px 2px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:9px;border-bottom:1px solid #dfe9f7;background:repeating-linear-gradient(to top,transparent 0, transparent 24%,#edf3fa 25%)}
+#landingPage .lp-chart-bars i{display:block;width:100%;background:linear-gradient(#38bafb,#1676df);border-radius:3px 3px 0 0;min-width:5px}
+#landingPage .lp-chart-axis{display:flex;justify-content:space-between;font-size:8px;color:#92a8bd;margin-top:5px}
+#landingPage .lp-preview-status{display:flex;gap:6px;justify-content:space-between;color:#7d93a7;font-size:8px}
+#landingPage .lp-preview-status span:first-child{color:#178f80}
+#landingPage .lp-floating-alert{position:absolute;right:-12px;bottom:-2px;display:flex;gap:10px;align-items:center;background:white;border-radius:13px;color:#1e416a;padding:14px 17px;box-shadow:0 18px 40px #0019454d;max-width:270px;z-index:2}
+#landingPage .lp-floating-alert>span{display:grid;place-items:center;width:33px;height:33px;border-radius:9px;background:#fff2dc;color:#f08020;font-size:19px;font-weight:900}
+#landingPage .lp-floating-alert strong,#landingPage .lp-floating-alert small{display:block}
+#landingPage .lp-floating-alert strong{font-size:11px}#landingPage .lp-floating-alert small{font-size:10px;color:#8093a9}
+#landingPage .lp-floating-box{position:absolute;right:-23px;top:5px;font-size:57px;filter:drop-shadow(0 12px 15px rgba(8,24,68,.25))}
+#landingPage .lp-section{padding-block:85px 90px}
+#landingPage .lp-section-title{text-align:center;max-width:670px;margin:0 auto 35px}
+#landingPage .lp-section-title h2{font-size:clamp(28px,3vw,41px);letter-spacing:-.045em;line-height:1.16;margin:0 0 13px;color:#0d2452}
+#landingPage .lp-section-title>p:last-child{font-size:14px;color:#72849a;margin:0}
+#landingPage .lp-features{margin-top:-34px;position:relative;z-index:2}
+#landingPage .lp-feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+#landingPage .lp-feature{background:white;box-shadow:0 18px 32px rgba(17,69,123,.075);border:1px solid #e4eef9;border-radius:18px;padding:28px 22px;min-height:275px;display:flex;flex-direction:column;transition:.2s}
+#landingPage .lp-feature:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(20,92,180,.14)}
+#landingPage .lp-feature .lp-icon{width:60px;height:60px;display:grid;place-items:center;border-radius:17px;margin-bottom:20px;font-size:29px;font-weight:800}
+#landingPage .lp-icon.blue{background:#e3f1ff;color:#1267df}#landingPage .lp-icon.green{background:#d9f7ec;color:#00a67e}#landingPage .lp-icon.orange{background:#fff0e5;color:#ff821a}#landingPage .lp-icon.purple{background:#edeaff;color:#7854df}
+#landingPage .lp-feature h3{font-size:18px;line-height:1.24;margin:0 0 9px;color:#162a4b;letter-spacing:-.02em}
+#landingPage .lp-feature p{color:#6e8198;font-size:13px;line-height:1.65;margin:0 0 20px}
+#landingPage .lp-feature button{color:#1672d9;font-weight:800;border:none;background:transparent;text-align:left;padding:0;margin-top:auto;font-size:12px}
+#landingPage .lp-benefits{background:radial-gradient(ellipse at 85% 50%,#e3f1ff,transparent 47%),#f4faff;padding:105px 0}
+#landingPage .lp-benefits-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+#landingPage .lp-benefits-copy h2{font-size:clamp(30px,3.5vw,47px);line-height:1.1;letter-spacing:-.055em;color:#122950;margin:0 0 20px}
+#landingPage .lp-benefits-copy h2 span{color:#0c80e7}
+#landingPage .lp-benefits-copy>p:not(.lp-overline){max-width:490px;color:#667e98;font-size:15px;line-height:1.75}
+#landingPage .lp-benefits ul{list-style:none;padding:0;margin:24px 0 30px;display:grid;gap:14px}
+#landingPage .lp-benefits li{font-size:14px;color:#36516f;display:flex;gap:12px;align-items:center}
+#landingPage .lp-benefits li:before{content:'✓';width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:#137be0;color:white;font-weight:900;flex-shrink:0}
+#landingPage .lp-benefits-visual{min-height:425px;position:relative;display:flex;align-items:center;justify-content:center}
+#landingPage .lp-benefits-visual:before{content:'';position:absolute;width:88%;height:77%;background:#deeeff;transform:rotate(-17deg);border-radius:80px 170px 70px 140px}
+#landingPage .lp-warehouse-art{position:absolute;left:0;bottom:30px;background:linear-gradient(140deg,#c5e4ff,#e9f4ff);border:13px solid #72a9d5;border-top:0;border-bottom:0;border-radius:14px;display:grid;grid-template-columns:repeat(2,110px);gap:20px;padding:25px;font-size:65px;filter:drop-shadow(0 18px 30px rgba(17,66,120,.12));opacity:.85}
+#landingPage .lp-warehouse-art:after{content:'';position:absolute;left:0;right:0;top:50%;height:10px;background:#72a9d5}
+#landingPage .lp-stock-popover{position:absolute;right:0;top:35px;width:min(315px,80%);background:white;border-radius:18px;padding:21px;box-shadow:0 20px 40px rgba(25,80,139,.17);border:1px solid #e2ecf6}
+#landingPage .lp-popover-header{display:flex;justify-content:space-between;gap:9px;margin-bottom:12px;font-size:12px}
+#landingPage .lp-popover-header span{font-size:10px;color:#18ab8b}
+#landingPage .lp-stock-popover>div:not(.lp-popover-header){display:grid;grid-template-columns:30px 1fr auto;gap:9px;align-items:center;padding:12px 0;border-top:1px solid #edf2f8;font-size:12px}
+#landingPage .lp-stock-popover>div b{font-size:21px;color:#1977d4}#landingPage .lp-stock-popover>div strong{color:#1560ae}
+#landingPage .lp-small-graph{position:absolute;left:0;bottom:0;background:white;border:1px solid #e0ebf9;box-shadow:0 20px 36px rgba(22,74,127,.15);padding:15px 22px;border-radius:15px;display:grid;color:#153554;font-size:12px;min-width:245px}
+#landingPage .lp-small-graph-line{color:#1685ee;font-size:27px;letter-spacing:8px;line-height:1.7}#landingPage .lp-small-graph small{color:#7b91a6}
+#landingPage .lp-step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+#landingPage .lp-step-grid article{background:white;border:1px solid #e4edf7;border-radius:16px;padding:29px;text-align:center;box-shadow:0 8px 24px #123a660c}
+#landingPage .lp-step-grid b{font-size:27px;color:#1686ef}#landingPage .lp-step-grid h3{margin:5px 0;font-size:18px}#landingPage .lp-step-grid p{margin:0;color:#6d849c;font-size:13px}
+#landingPage .lp-faq{padding:90px 0;background:#edf6fe}
+#landingPage .lp-faq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+#landingPage .lp-faq article{background:white;border:1px solid #e2edf8;border-radius:16px;padding:24px;box-shadow:0 8px 20px #245e9710}
+#landingPage .lp-faq article span{font-size:30px;color:#147de8}#landingPage .lp-faq article h3{font-size:16px;line-height:1.35;margin:13px 0 8px;color:#182e4d}#landingPage .lp-faq article p{font-size:13px;line-height:1.6;color:#72849d;margin:0}
+#landingPage .lp-demo{padding-block:100px;display:grid;grid-template-columns:1fr 1.6fr;gap:45px;align-items:center}
+#landingPage .lp-demo h2{font-size:clamp(28px,2.6vw,37px);color:#142947;line-height:1.17;margin:0 0 10px;letter-spacing:-.03em}
+#landingPage .lp-demo p:not(.lp-overline){font-size:13px;color:#748aa0}
+#landingPage .lp-demo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+#landingPage .lp-demo-grid div{display:flex;flex-direction:column;border-left:1px solid #d6e5f5;padding:9px 12px 9px 18px}
+#landingPage .lp-demo-grid strong{font-size:26px;letter-spacing:-.05em;color:#0d448d}#landingPage .lp-demo-grid span{font-size:11px;color:#72889f}
+#landingPage .lp-bottom{background:linear-gradient(122deg,#00155b,#066dd3);color:white;text-align:center;padding:77px 0 64px;clip-path:polygon(0 11%,45% 0,100% 10%,100% 100%,0 100%)}
+#landingPage .lp-bottom .lp-overline{color:#7fe4ff}#landingPage .lp-bottom h2{font-size:clamp(29px,3.7vw,45px);line-height:1.16;margin:0 0 14px}#landingPage .lp-bottom p:not(.lp-overline){color:#c7ddf2;margin:0 0 25px}#landingPage .lp-bottom small{display:block;margin-top:18px;color:#a9cae7}
+#landingPage .lp-footer{background:#031a4d;color:#adcae4;padding:23px 0}
+#landingPage .lp-footer .lp-wrap{display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:12px}#landingPage .lp-footer span{font-weight:800}#landingPage .lp-footer p{margin:0}#landingPage .lp-footer a{color:#aedbff}
+#landingPage .lp-section,#landingPage .lp-benefits,#landingPage .lp-faq{scroll-margin-top:20px}
+/* The authenticated application also adopts the blue gradient / clean card visual language. */
+.app-v11-hero{margin:8px 0 18px;border-radius:23px;background:linear-gradient(115deg,#051658 0%,#074baf 70%,#0388e9 100%);color:white;box-shadow:0 19px 36px rgba(8,49,122,.2);padding:40px 44px;display:grid;grid-template-columns:1.25fr .9fr;gap:25px;align-items:center;overflow:hidden;position:relative}
+.app-v11-hero:after{content:'';width:270px;height:270px;position:absolute;right:-70px;top:-80px;transform:rotate(35deg);border:1px solid #ffffff25;border-radius:58px;pointer-events:none}
+.app-v11-hero .app-v11-kicker{font-size:10px;letter-spacing:.12em;color:#8de9f9;font-weight:850}
+.app-v11-hero h2{font-size:clamp(26px,3.2vw,44px);line-height:1.11;letter-spacing:-.05em;margin:13px 0;color:white;max-width:540px}
+.app-v11-hero h2 em{font-style:normal;color:#6fe5ff}
+.app-v11-hero p{max-width:560px;color:#c7e6ff;font-size:14px;line-height:1.68;margin:0 0 20px}
+.app-v11-hero-actions{display:flex;flex-wrap:wrap;gap:11px}
+.app-v11-hero .lp-btn{font-weight:800;font-size:12px;border-radius:9px;padding:12px 19px;cursor:pointer}
+.app-v11-hero .lp-btn-orange{background:#ff842c;color:white;border:0}.app-v11-hero .lp-btn-outline{color:white;border:1px solid #ffffff7a;background:transparent}
+.app-v11-visual{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;position:relative;z-index:1}
+.app-v11-visual>div{border:1px solid #d9e9ff41;border-radius:13px;padding:14px;background:#ffffff22;backdrop-filter:blur(6px);display:grid;gap:4px}
+.app-v11-visual span{font-size:25px}.app-v11-visual b{color:white;font-size:12px}.app-v11-visual small{font-size:10px;color:#c0e2fc}
+.app-v11-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:25px}
+.app-v11-shortcuts button{border:1px solid #dcecf8;background:white;border-radius:14px;box-shadow:0 8px 19px #173e670c;text-align:left;padding:16px;cursor:pointer;display:grid;gap:3px;transition:.18s}
+.app-v11-shortcuts button:hover{transform:translateY(-3px);box-shadow:0 14px 30px #155ab12b}
+.app-v11-shortcuts span{font-size:23px;color:#1179e5}.app-v11-shortcuts b{font-size:13px;color:#163457}.app-v11-shortcuts small{font-size:11px;color:#71859a}
+.lp-auth-back{border:0;background:transparent;padding:0;margin:0 0 22px;font-weight:750;color:#1b70c2;font-size:12px;cursor:pointer}
+@media(max-width:1080px){#landingPage .lp-wrap{padding-inline:22px}#landingPage .lp-nav nav{gap:16px}#landingPage .lp-hero-content{gap:15px}#landingPage .lp-feature-grid,#landingPage .lp-faq-grid{grid-template-columns:repeat(2,1fr)}#landingPage .lp-benefits-grid{gap:30px}#landingPage .lp-demo{grid-template-columns:1fr}#landingPage .lp-demo-grid{max-width:760px}}
+@media(max-width:740px){#landingPage .lp-hero{clip-path:none;padding-bottom:75px;border-radius:0 0 52px 52px}#landingPage .lp-nav{min-height:77px;gap:12px}#landingPage .lp-nav nav{display:none}#landingPage .lp-brand{font-size:16px}#landingPage .lp-header-actions{gap:10px}#landingPage .lp-header-actions .lp-btn{min-height:38px;padding:7px 11px;font-size:11px}#landingPage .lp-hero-content{grid-template-columns:1fr;gap:5px}#landingPage .lp-hero-copy{padding-top:25px}#landingPage .lp-hero h1{font-size:clamp(40px,9vw,59px)}#landingPage .lp-preview{max-width:550px;margin:0 auto}#landingPage .lp-features{margin-top:0}#landingPage .lp-section{padding-block:60px}#landingPage .lp-feature-grid,#landingPage .lp-faq-grid{grid-template-columns:repeat(2,1fr)}#landingPage .lp-benefits-grid{grid-template-columns:1fr}#landingPage .lp-benefits-visual{min-height:400px}#landingPage .lp-demo-grid{grid-template-columns:repeat(2,1fr)}#landingPage .lp-footer .lp-wrap{flex-wrap:wrap}.app-v11-hero{grid-template-columns:1fr;padding:29px 23px}.app-v11-shortcuts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:470px){#landingPage .lp-wrap{padding-inline:15px}#landingPage .lp-brand-mark{width:35px;height:35px}#landingPage .lp-header-actions .lp-text-btn{font-size:11px}#landingPage .lp-header-actions .lp-btn{max-width:130px;white-space:normal;text-align:center}#landingPage .lp-hero h1{font-size:40px}#landingPage .lp-hero h1>span{font-size:24px}#landingPage .lp-preview{padding:18px 0 35px}#landingPage .lp-preview-window{border-width:4px}#landingPage .lp-preview-inside{padding:12px 8px}#landingPage .lp-window-main{min-height:275px}#landingPage .lp-preview-metrics strong{font-size:17px}#landingPage .lp-preview-metrics>div{padding:7px 5px}#landingPage .lp-floating-alert{right:0;bottom:-5px;padding:9px 11px}#landingPage .lp-floating-box{font-size:39px;right:5px}#landingPage .lp-feature-grid,#landingPage .lp-faq-grid{grid-template-columns:1fr}#landingPage .lp-feature{min-height:0}#landingPage .lp-benefits{padding:70px 0}#landingPage .lp-benefits-visual{min-height:360px}#landingPage .lp-warehouse-art{grid-template-columns:repeat(2,90px);font-size:44px;padding:17px}#landingPage .lp-stock-popover{width:86%;padding:14px}#landingPage .lp-small-graph{min-width:170px}#landingPage .lp-step-grid{grid-template-columns:1fr}#landingPage .lp-bottom{clip-path:none;padding:65px 0}#landingPage .lp-bottom h2{font-size:28px}.app-v11-visual{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.app-v11-visual>div{padding:9px 7px}.app-v11-visual b{font-size:10px}}
+@media(prefers-reduced-motion:reduce){#landingPage *,.app-v11-hero *{transition:none!important}}

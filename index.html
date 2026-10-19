@@ -6,106 +6,268 @@
   <meta name="description" content="Painel completo para controle de estoque, compras, vendas, validades e relatórios.">
   <title>Estoque Azul | Controle Inteligente</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="pdv.css">
+  <link rel="stylesheet" href="cadastro.css">
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#dashboard" aria-label="Estoque Azul - início">
-        <span class="brand-mark">EA</span>
-        <span><strong>Estoque Azul</strong><small>Controle inteligente</small></span>
-      </a>
 
-      <nav class="main-nav" aria-label="Navegação principal">
-        <button class="nav-item active" data-view="dashboard"><span>▦</span> Visão geral</button>
-        <button class="nav-item" data-view="produtos"><span>□</span> Produtos</button>
-        <button class="nav-item" data-view="movimentacoes"><span>⇄</span> Movimentações</button>
-        <button class="nav-item" data-view="vencimentos"><span>◷</span> Vencimentos</button>
-        <button class="nav-item" data-view="relatorios"><span>▤</span> Relatórios</button>
-      </nav>
+  <!-- Ícones vetoriais incluídos no próprio projeto: funcionam também sem internet. -->
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="M3 7v10l9 5 9-5V7M12 12v10M7.5 4.5l9 5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-transfer" viewBox="0 0 24 24"><path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3m-3 3h7"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 19h18M4 15l5-5 4 3 7-8M16 5h4v4"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a2 2 0 0 0 2 2h2l2 5h3l-2-5h1l9 4V5l-9 4H5a2 2 0 0 0-2 2Zm18-3c1.6 2.3 1.6 5.7 0 8"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-5 4 3 5-7"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M3 10h18M7 6V3h12v3M16 15h2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V4m-5 5 5-5 5 5M4 17v4h16v-4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4c5 0 6 8 1 8m1 5c2 0 4 2 4 4"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
+  </svg>
 
-      <div class="sidebar-card">
-        <p class="eyebrow">Saúde do estoque</p>
-        <div class="health-line"><strong id="healthScore">92%</strong><span>saudável</span></div>
-        <div class="progress"><span id="healthBar" style="width:92%"></span></div>
-        <small>Calculado por disponibilidade, validade e estoque mínimo.</small>
+<div id="landingPage" class="landing-page" aria-label="Apresentação Estoque Azul V10">
+  <div class="lp-hero" id="apresentacao"><div class="lp-wrap">
+    <header class="lp-nav">
+      <a class="lp-brand" href="#apresentacao"><span class="lp-brand-mark">⬡</span><strong>Estoque<span>Azul</span><sup>V10</sup></strong></a>
+      <nav aria-label="Menu do site"><a href="#recursos">Recursos</a><a href="#vantagens">Benefícios</a><a href="#duvidas">Dúvidas</a></nav>
+      <div class="lp-header-actions"><button type="button" class="lp-text-btn" data-landing-login>Entrar</button><button type="button" class="lp-btn lp-btn-cyan" data-landing-login>Acessar sistema →</button></div>
+    </header>
+    <div class="lp-hero-content">
+      <div class="lp-hero-copy"><p class="lp-overline">● GESTÃO DE ESTOQUE · CONTROLE E CLAREZA</p>
+        <h1>Estoque Azul <em>V10</em><span>Seu negócio mais organizado, do cadastro à venda.</span></h1>
+        <p class="lp-hero-desc">Controle produtos, registre saídas no PDV, acompanhe alertas de reposição e analise seus números com segurança — tudo em um só sistema.</p>
+        <div class="lp-cta-row"><button type="button" data-landing-login class="lp-btn lp-btn-orange">Começar agora ↗</button><a class="lp-btn lp-btn-outline" href="#recursos">Conhecer os recursos ↓</a></div>
+        <div class="lp-hero-foot"><span>✓ 20 produtos na base demonstrativa</span><span>✓ 12 meses de histórico fictício</span></div>
       </div>
+      <div class="lp-preview" aria-label="Prévia ilustrativa do painel de estoque">
+        <div class="lp-preview-window"><div class="lp-window-bar"><span>● ● ●</span><b>EstoqueAzul / Painel</b><small>V10</small></div><div class="lp-window-main">
+          <div class="lp-preview-side"><b>⬡</b><span class="selected">▦</span><span>▣</span><span>⇄</span><span>◷</span><span>▥</span></div>
+          <div class="lp-preview-inside"><h3>Visão geral <small>DEMONSTRAÇÃO</small></h3>
+            <div class="lp-preview-metrics"><div><small>Produtos</small><strong>20</strong><span>Cadastrados</span></div><div><small>Movimentações</small><strong>3.283</strong><span>Registros demo</span></div><div><small>Período</small><strong>12</strong><span>Meses</span></div></div>
+            <div class="lp-preview-graph"><div class="lp-graph-head"><strong>Movimentações por mês</strong><small>Dados ilustrativos</small></div><div class="lp-chart-bars"><i style="height:42%"></i><i style="height:60%"></i><i style="height:53%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:92%"></i><i style="height:76%"></i><i style="height:56%"></i><i style="height:74%"></i></div><div class="lp-chart-axis"><span>JAN</span><span>ABR</span><span>JUL</span><span>OUT</span></div></div>
+            <div class="lp-preview-status"><span>● Gestão de produtos e estoque</span><span>PDV · Alertas · Tendências</span></div>
+          </div>
+        </div></div>
+        <div class="lp-floating-alert"><span>!</span><div><strong>Reposição sob controle</strong><small>Alertas de estoque mínimo</small></div></div>
+        <div class="lp-floating-box" aria-hidden="true">📦</div>
+      </div>
+    </div>
+  </div></div>
+  <main>
+    <section class="lp-section lp-wrap lp-features" id="recursos">
+      <div class="lp-section-title"><p class="lp-overline">RECURSOS DO ESTOQUE AZUL</p><h2>Uma plataforma completa para sua operação</h2><p>Ferramentas conectadas, informações claras e acesso controlado.</p></div>
+      <div class="lp-feature-grid">
+        <article class="lp-feature"><span class="lp-icon blue">▣</span><h3>Cadastro de produtos</h3><p>Fotos, fornecedores, códigos, marcas, grupos, preços e promoções.</p><button type="button" data-landing-login>Explorar recurso →</button></article>
+        <article class="lp-feature"><span class="lp-icon green">↗</span><h3>PDV e movimentações</h3><p>Registre vendas, entradas, saídas e ajustes em uma operação organizada.</p><button type="button" data-landing-login>Explorar recurso →</button></article>
+        <article class="lp-feature"><span class="lp-icon orange">◷</span><h3>Alertas e tendências</h3><p>Produtos abaixo do mínimo, sazonalidade e análise do histórico.</p><button type="button" data-landing-login>Explorar recurso →</button></article>
+        <article class="lp-feature"><span class="lp-icon purple">♙</span><h3>Login e permissões</h3><p>Perfis com direitos de consulta, operação e administração.</p><button type="button" data-landing-login>Explorar recurso →</button></article>
+      </div>
+    </section>
+    <section class="lp-benefits" id="vantagens"><div class="lp-wrap lp-benefits-grid"><div class="lp-benefits-copy"><p class="lp-overline">MAIS CONTROLE PARA SEU NEGÓCIO</p><h2>Tudo o que você precisa para uma <span>gestão eficiente</span></h2><p>Acompanhe o que entra, o que sai e o que precisa ser reposto. O sistema conecta o cadastro de produtos aos relatórios da operação.</p><ul><li>Cadastro detalhado, fotos e preços comerciais</li><li>Controle de estoque mínimo, validade e sazonalidade</li><li>Movimentações e vendas registradas no PDV</li><li>Gráficos por categoria e análise de tendências</li><li>Usuários e permissões validadas no servidor</li><li>Backup, relatórios e base de demonstração</li></ul><button type="button" data-landing-login class="lp-btn lp-btn-blue">Conhecer o sistema →</button></div>
+      <div class="lp-benefits-visual"><div class="lp-warehouse-art" aria-hidden="true"><span>📦</span><span>📦</span><span>📦</span><span>📦</span></div><div class="lp-stock-popover"><div class="lp-popover-header"><strong>Estoque em tempo real</strong><span>● Atualizado</span></div><div><b>▣</b><span>Produtos cadastrados</span><strong>20</strong></div><div><b>⇄</b><span>Movimentações demo</span><strong>3.283</strong></div><div><b>◷</b><span>Alertas automáticos</span><strong>✓</strong></div></div><div class="lp-small-graph"><strong>Relatórios e tendências</strong><div class="lp-small-graph-line">▁ ▂ ▄ ▃ ▅ ▆ █</div><small>Acompanhe a evolução</small></div></div>
+    </div></section>
+    <section class="lp-section lp-wrap lp-steps"><div class="lp-section-title"><p class="lp-overline">EM TRÊS PASSOS</p><h2>Comece com facilidade</h2></div><div class="lp-step-grid"><article><b>01</b><h3>Cadastre</h3><p>Organize dados, preços e estoque dos produtos.</p></article><article><b>02</b><h3>Movimente</h3><p>Registre entradas, saídas, vendas e ajustes.</p></article><article><b>03</b><h3>Analise</h3><p>Use gráficos e alertas para decidir melhor.</p></article></div></section>
+    <section class="lp-faq" id="duvidas"><div class="lp-wrap"><div class="lp-section-title"><p class="lp-overline">DÚVIDAS COMUNS</p><h2>Perguntas frequentes</h2><p>Saiba o que esperar da versão V10.</p></div><div class="lp-faq-grid"><article><span>✦</span><h3>O que é o Estoque Azul?</h3><p>Um sistema para gerenciar produtos, estoque, vendas, alertas e relatórios.</p></article><article><span>▤</span><h3>Há dados para testar?</h3><p>Sim. Instalações novas incluem 20 produtos e um ano de dados <b>fictícios</b>.</p></article><article><span>♙</span><h3>Posso cadastrar usuários?</h3><p>O administrador define contas e permissões diferentes para cada função.</p></article><article><span>▣</span><h3>Funciona no celular?</h3><p>Sim, o site é responsivo. O acesso depende de o servidor estar disponível.</p></article></div></div></section>
+    <section class="lp-wrap lp-demo"><div><p class="lp-overline">BASE DEMONSTRATIVA</p><h2>Dados para explorar todas as telas</h2><p>Os números abaixo descrevem apenas o conteúdo fictício instalado como exemplo — não representam clientes ou vendas reais.</p></div><div class="lp-demo-grid"><div><strong>20</strong><span>produtos</span></div><div><strong>12</strong><span>meses</span></div><div><strong>3.283</strong><span>movimentações</span></div><div><strong>40</strong><span>eventos de tendência</span></div></div></section>
+    <section class="lp-bottom"><div class="lp-wrap"><p class="lp-overline">PRONTO PARA COMEÇAR?</p><h2>Coloque seu estoque em ordem com o Estoque Azul</h2><p>Acesse o sistema e conheça os recursos com uma base de exemplo.</p><button type="button" data-landing-login class="lp-btn lp-btn-white">Entrar no sistema →</button><small>Ambiente local • Dados de demonstração fictícios • Login individual</small></div></section>
+  </main>
+  <footer class="lp-footer"><div class="lp-wrap"><span>⬡ Estoque<span>Azul</span> V10</span><p>Organização, clareza e segurança para o seu estoque.</p><a href="#apresentacao">Voltar ao topo ↑</a></div></footer>
+</div>
 
-      <p class="sidebar-footer">Dados armazenados neste navegador.</p>
-    </aside>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="header-inner">
+        <a class="brand" href="#dashboard" id="homeLink" aria-label="Estoque Azul — ir para a visão geral">
+          <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg></span>
+          <span class="brand-name"><strong>Estoque<span>Azul</span></strong><small>Gestão simplificada</small></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <button type="button" class="nav-item active" data-view="dashboard" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg><span>Início</span></button>
+          <button type="button" class="nav-item" data-view="produtos"><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg><span>Produtos</span></button>
+          <button type="button" class="nav-item" data-view="movimentacoes"><svg class="icon" aria-hidden="true"><use href="#i-transfer"></use></svg><span>Movimentações</span></button>
+          <button type="button" class="nav-item" data-view="vencimentos"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span>Vencimentos</span></button>
+          <button type="button" class="nav-item" data-view="alertas"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg><span>Alertas</span></button>
+          <button type="button" class="nav-item" data-view="tendencias"><svg class="icon" aria-hidden="true"><use href="#i-trend"></use></svg><span>Tendências</span></button>
+          <button type="button" class="nav-item" data-view="relatorios"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg><span>Relatórios</span></button>
+          <button type="button" class="nav-item" data-view="usuarios"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg><span>Usuários</span></button>
+        </nav>
+        <div class="account-area"><div class="account-copy"><small>Conectado como</small><strong id="accountName">—</strong><span id="accountRole">—</span></div><button type="button" id="logoutButton" class="button logout-button">Sair</button></div>
+        <div class="header-health" title="Porcentagem de produtos em situação normal">
+          <span class="header-health-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+          <span class="header-health-copy"><small>Saúde do estoque</small><strong id="healthScore">—</strong><span class="header-health-track"><span id="healthBar" style="width:0%"></span></span></span>
+        </div>
+      </div>
+    </header>
 
     <main class="main-content">
+      <div class="demo-banner" id="demoBanner" hidden><span>BASE DEMONSTRATIVA</span> Dados ilustrativos de 15/10/2025 a 15/10/2026 • 20 produtos • preços e histórico simulados. Use Backup antes de substituir os dados.</div>
       <header class="topbar">
         <div class="topbar-left">
-          <button class="icon-button menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
           <div>
             <p class="eyebrow" id="todayLabel"></p>
-            <h1 id="viewTitle">Visão geral do estoque</h1>
+            <h1 id="viewTitle">Painel do estoque</h1>
           </div>
         </div>
         <div class="top-actions">
           <label class="global-search">
-            <span>⌕</span>
-            <input id="globalSearch" type="search" placeholder="Buscar produto ou SKU" autocomplete="off">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            <input id="globalSearch" type="search" placeholder="Buscar por nome, SKU ou categoria" autocomplete="off">
           </label>
-          <button class="button secondary" id="restoreButton">Restaurar</button>
-          <button class="button secondary" id="backupButton">Backup</button>
-          <button class="button primary" data-open-modal="productModal">+ Novo produto</button>
+          <button class="button secondary" id="restoreButton"><svg class="icon" aria-hidden="true"><use href="#i-upload"></use></svg> Restaurar</button>
+          <button class="button secondary" id="backupButton"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg> Backup</button>
+          <button type="button" class="button secondary" id="resetDemoButton" title="Substituir dados por exemplo fictício após confirmação">Base demo</button>
+          <button class="button primary" data-open-modal="productModal"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg> Novo produto</button>
         </div>
       </header>
 
       <section class="view active" id="dashboard">
+
+        <section class="app-v11-hero" aria-labelledby="appV11Title"><div><span class="app-v11-kicker">● SEU ESTOQUE AZUL V10</span><h2 id="appV11Title">Gestão inteligente, <em>em um só lugar.</em></h2><p>Controle produtos e vendas, acompanhe tendências e alertas e mantenha sua operação organizada.</p><div class="app-v11-hero-actions"><button type="button" class="lp-btn lp-btn-orange" id="goToPDV">Abrir frente de caixa →</button><button type="button" class="lp-btn lp-btn-outline" data-go-view="produtos">Gerenciar produtos</button></div></div><div class="app-v11-visual" aria-hidden="true"><div><span>📦</span><b>Produtos</b><small>Cadastro completo</small></div><div><span>⇄</span><b>Movimentações</b><small>Controle de entradas e saídas</small></div><div><span>◷</span><b>Alertas</b><small>Estoque mínimo e validade</small></div></div></section>
+        <div class="app-v11-shortcuts" aria-label="Acessos rápidos"><button type="button" data-go-view="produtos"><span>▣</span><b>Produtos</b><small>Catálogo e preços</small></button><button type="button" data-go-view="alertas"><span>◷</span><b>Alertas</b><small>Prioridades e reposição</small></button><button type="button" data-go-view="tendencias"><span>↗</span><b>Tendências</b><small>Oferta e demanda</small></button><button type="button" data-go-view="relatorios"><span>▤</span><b>Relatórios</b><small>Resultados e gráficos</small></button></div>
+
+        <section class="pos-shell" id="pdvSection" aria-label="Central de vendas e catálogo">
+          <div class="pos-intro">
+            <div><span class="pos-kicker"><span class="pos-kicker-dot"></span> ESTAÇÃO DE TRABALHO</span><h2>Frente de caixa <span>&amp; catálogo</span></h2><p>Selecione os produtos à esquerda e organize o atendimento à direita. Tudo conectado ao seu estoque.</p></div>
+            <div class="pos-intro-side"><span class="pos-online-dot"></span><div><strong>Controle conectado</strong><small id="posOperator">Sessão protegida</small></div></div>
+          </div>
+          <div class="pos-grid">
+            <div class="pos-catalog">
+              <div class="pos-section-heading"><div><span class="pos-section-index">01 / CATÁLOGO</span><h3>Encontre seus produtos</h3></div><div class="pos-catalog-count" id="posProductCount">0 produtos</div></div>
+              <label class="pos-search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg><input type="search" id="posSearch" placeholder="Buscar pelo nome, código ou categoria…" autocomplete="off" aria-label="Buscar produtos no catálogo"></label>
+              <div class="pos-categories" id="posCategories" aria-label="Filtrar categoria"></div>
+              <div class="pos-grid-products" id="posProducts" aria-live="polite"></div>
+              <div class="pos-catalog-footer"><span><span class="pos-stock-dot"></span> Estoque sincronizado com o servidor</span><button type="button" class="pos-link" data-go-view="produtos">Gerenciar produtos <span aria-hidden="true">↗</span></button></div>
+            </div>
+            <div class="pos-sale">
+              <div class="pos-section-heading"><div><span class="pos-section-index">02 / OPERAÇÃO</span><h3>Nova venda</h3></div><span class="pos-pill">PDV</span></div>
+              <div class="pos-sale-meta"><div><span>ATENDENTE</span><strong id="posClerk">Sessão atual</strong></div><div><span>ITENS SELECIONADOS</span><strong id="posQty">0 unidades</strong></div></div>
+              <div class="pos-cart-title"><span>PRODUTO</span><span>QUANTIDADE</span><span>SUBTOTAL</span></div>
+              <div class="pos-cart-list" id="posCart" aria-live="polite"></div>
+              <div class="pos-total-area">
+                <div class="pos-adjustments"><label>Desconto (R$)<input id="posDiscount" type="number" min="0" step="0.01" value="0" inputmode="decimal"></label><label>Acréscimo (R$)<input id="posSurcharge" type="number" min="0" step="0.01" value="0" inputmode="decimal"></label></div>
+                <div class="pos-math"><div><span>Subtotal</span><strong id="posSubtotal">R$ 0,00</strong></div><div><span>Desconto / acréscimo</span><strong id="posAdjustSummary">R$ 0,00</strong></div></div>
+                <div class="pos-total"><div><span>TOTAL DA VENDA</span><strong id="posTotal">R$ 0,00</strong></div><span class="pos-total-icon">◈</span></div>
+                <label class="pos-payment">Forma de pagamento <select id="posPayment"><option value="Não informado">Selecionar forma de pagamento</option><option value="Pix">Pix</option><option value="Dinheiro">Dinheiro</option><option value="Cartão de débito">Cartão de débito</option><option value="Cartão de crédito">Cartão de crédito</option><option value="Outro">Outro</option></select></label>
+                <div class="pos-commands"><button type="button" class="pos-secondary" id="posClear">Limpar</button><button type="button" class="pos-submit" id="posCheckout">Registrar venda <span aria-hidden="true">→</span></button></div>
+                <small class="pos-disclaimer" id="posInfo">A venda registra saídas no estoque. Não realiza cobrança bancária nem emite nota fiscal.</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="welcome-panel" aria-labelledby="welcomeTitle">
+          <div class="welcome-main">
+            <span class="welcome-kicker"><span class="live-dot"></span> SEU ESTOQUE, SEM COMPLICAÇÃO</span>
+            <h2 id="welcomeTitle">Controle seus produtos com mais clareza.</h2>
+            <p>Acompanhe o que você tem disponível, descubra o que precisa repor e veja quais produtos estão próximos do vencimento. Tudo em um só lugar.</p>
+            <div class="welcome-actions">
+              <button class="button welcome-primary" data-go-view="produtos">Ver meus produtos <span aria-hidden="true">→</span></button>
+              <button class="button welcome-outline" data-open-modal="movementModal">+ Registrar entrada ou saída</button>
+            </div>
+          </div>
+          <div class="start-guide" aria-label="Como utilizar o sistema">
+            <span class="guide-kicker">COMECE EM 3 PASSOS</span>
+            <div class="guide-step"><span class="step-number">01</span><p><strong>Cadastre seus produtos</strong><small>Informe quantidade, custo, preço e estoque mínimo.</small></p></div>
+            <div class="guide-step"><span class="step-number">02</span><p><strong>Registre entradas e saídas</strong><small>Atualize o saldo a cada compra, venda ou ajuste.</small></p></div>
+            <div class="guide-step"><span class="step-number">03</span><p><strong>Acompanhe os alertas</strong><small>Identifique reposições e vencimentos prioritários.</small></p></div>
+            <p class="demo-info">Os dados da primeira abertura são exemplos. Você pode editar ou excluir os produtos.</p>
+          </div>
+        </section>
+
+        <div class="home-focus" role="status"><span class="focus-symbol" aria-hidden="true">✦</span><p id="homeSummary">Carregando o resumo do seu estoque...</p><button class="text-button" data-go-view="produtos">Conferir produtos →</button></div>
         <div class="notice-row" id="noticeRow"></div>
 
+        <div class="section-heading-row"><div><p class="eyebrow">PANORAMA ATUAL</p><h2>Seus números de hoje</h2><p>Estes indicadores mudam automaticamente conforme você movimenta o estoque.</p></div></div>
         <div class="kpi-grid">
           <article class="kpi-card blue">
-            <div class="kpi-top"><span>Produtos ativos</span><i>□</i></div>
+            <div class="kpi-top"><span>Produtos cadastrados</span><i><svg class="icon" aria-hidden="true"><use href="#i-package"></use></svg></i></div>
             <strong id="kpiProducts">0</strong>
-            <small id="kpiProductsNote">0 categorias cadastradas</small>
+            <small id="kpiProductsNote">Itens diferentes no cadastro</small>
           </article>
           <article class="kpi-card cyan">
-            <div class="kpi-top"><span>Unidades em estoque</span><i>▥</i></div>
+            <div class="kpi-top"><span>Unidades em estoque</span><i><svg class="icon" aria-hidden="true"><use href="#i-layers"></use></svg></i></div>
             <strong id="kpiUnits">0</strong>
-            <small id="kpiUnitsNote">Disponibilidade atual</small>
+            <small id="kpiUnitsNote">Soma de todas as quantidades</small>
           </article>
           <article class="kpi-card green">
-            <div class="kpi-top"><span>Valor de venda</span><i>R$</i></div>
+            <div class="kpi-top"><span>Potencial de venda</span><i><svg class="icon" aria-hidden="true"><use href="#i-wallet"></use></svg></i></div>
             <strong id="kpiSaleValue">R$ 0</strong>
-            <small id="kpiMarginNote">Margem estimada de 0%</small>
+            <small id="kpiMarginNote">Valor estimado se tudo for vendido</small>
           </article>
           <article class="kpi-card amber">
-            <div class="kpi-top"><span>Atenção necessária</span><i>!</i></div>
+            <div class="kpi-top"><span>Atenção necessária</span><i><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></i></div>
             <strong id="kpiAlerts">0</strong>
-            <small id="kpiAlertsNote">Estoque baixo ou validade próxima</small>
+            <small id="kpiAlertsNote">Itens com atenção necessária</small>
           </article>
         </div>
 
+        <div class="home-feature-grid">
+        <article class="panel trend-home-card" aria-labelledby="homeTrendTitle">
+          <div class="trend-home-symbol" aria-hidden="true"><svg class="icon"><use href="#i-trend"></use></svg></div>
+          <div class="trend-home-copy"><p class="eyebrow">NOVO • INTELIGÊNCIA DE ESTOQUE</p><h2 id="homeTrendTitle">Tendências de vendas e demanda</h2><p id="homeTrendText">Compare as saídas dos produtos, a reposição e fatores como campanhas, preço e época do ano.</p></div>
+          <button type="button" class="button primary trend-home-button" data-go-view="tendencias">Explorar tendências →</button>
+        </article>
+
+        <article class="panel trend-home-card alert-home-card" aria-labelledby="homeAlertTitle">
+          <div class="trend-home-symbol alert-home-symbol" aria-hidden="true"><svg class="icon"><use href="#i-alert"></use></svg></div>
+          <div class="trend-home-copy"><p class="eyebrow">NOVO • REPOSIÇÃO PRIORITÁRIA</p><h2 id="homeAlertTitle">Alertas de estoque e reposição</h2><p id="homeAlertText">Veja quais produtos acabaram, quais podem acabar logo e quais alertas foram ignorados temporariamente.</p></div>
+          <button type="button" class="button primary trend-home-button" data-go-view="alertas">Abrir alertas →</button>
+        </article>
+        </div>
+
+        <div class="section-heading-row charts-heading"><div><p class="eyebrow">GRÁFICOS EXPLICADOS</p><h2>Entenda o que está acontecendo</h2><p>Use os filtros para comparar períodos e quantidades sem gráficos exagerados.</p></div></div>
         <div class="dashboard-grid">
-          <article class="panel panel-wide">
+          <article class="panel panel-wide chart-panel">
             <div class="panel-heading">
-              <div><p class="eyebrow">Fluxo operacional</p><h2>Movimentações dos últimos 14 dias</h2></div>
+              <div><p class="eyebrow">ENTRADAS E SAÍDAS</p><h2>Como seu estoque se movimentou?</h2><p class="panel-description">Compare tudo o que entrou e saiu durante o período selecionado.</p></div>
+            </div>
+            <div class="chart-toolbar">
+              <label for="chartPeriod">Período <select id="chartPeriod"><option value="7">7 dias</option><option value="14" selected>14 dias</option><option value="30">30 dias</option></select></label>
+              <label for="movementMetric">Visualizar <select id="movementMetric"><option value="quantity">Unidades</option><option value="money">Valores (R$)</option></select></label>
+              <label for="unitAxisScale" id="unitAxisControl">Escala vertical <select id="unitAxisScale" title="Altere a escala do gráfico de unidades"><option value="50">0 a 50 un.</option><option value="100" selected>0 a 100 un.</option><option value="250">0 a 250 un.</option><option value="500">0 a 500 un.</option><option value="1000">0 a 1.000 un.</option><option value="auto">Automática</option></select></label>
               <div class="legend"><span class="legend-in">Entradas</span><span class="legend-out">Saídas</span></div>
             </div>
-            <canvas id="movementChart" height="260" aria-label="Gráfico de entradas e saídas"></canvas>
+            <div class="chart-content"><div class="chart-plot"><canvas id="movementChart" height="142" aria-label="Gráfico de movimentações por data, com escala de unidades ampliada"></canvas></div>
+              <div class="chart-stat-list" aria-label="Resumo do período">
+                <div class="chart-stat"><span class="stat-dot entry"></span><span>Entradas no período</span><strong id="chartIncomingTotal">0 un.</strong></div>
+                <div class="chart-stat"><span class="stat-dot exit"></span><span>Saídas no período</span><strong id="chartOutgoingTotal">0 un.</strong></div>
+                <p>A curva mostra movimentações por dia. Os números ao lado mostram os totais do período.</p>
+              </div></div>
+            <p class="chart-help" id="movementChartHint">Escala vertical ampliada para facilitar a comparação.</p>
           </article>
-          <article class="panel">
+          <article class="panel chart-panel">
             <div class="panel-heading">
-              <div><p class="eyebrow">Distribuição</p><h2>Status do estoque</h2></div>
+              <div><p class="eyebrow">SITUAÇÃO DOS PRODUTOS</p><h2>Quais precisam de atenção?</h2><p class="panel-description">Quantidade de produtos em cada situação, não de unidades.</p></div>
             </div>
             <div class="donut-layout">
-              <canvas id="statusChart" width="220" height="220" aria-label="Gráfico de status"></canvas>
+              <canvas id="statusChart" width="148" height="148" aria-label="Distribuição de produtos por situação"></canvas>
               <div id="statusLegend" class="donut-legend"></div>
             </div>
+            <p class="chart-help">Vencidos e sem estoque aparecem em “Crítico”.</p>
           </article>
         </div>
 
         <div class="dashboard-grid lower-grid">
-          <article class="panel">
-            <div class="panel-heading"><div><p class="eyebrow">Capital imobilizado</p><h2>Valor por categoria</h2></div></div>
-            <canvas id="categoryChart" height="260" aria-label="Gráfico de valor por categoria"></canvas>
+          <article class="panel chart-panel">
+            <div class="panel-heading"><div><p class="eyebrow">COMPARAÇÃO POR CATEGORIA</p><h2>Onde está concentrado o estoque?</h2><p class="panel-description">Veja as categorias com maior investimento ou quantidade.</p></div></div>
+            <div class="chart-toolbar"><label for="categoryMetric">Comparar por <select id="categoryMetric"><option value="cost">Custo em estoque (R$)</option><option value="units">Quantidade (un.)</option></select></label></div>
+            <div id="categoryBars" class="category-bars" role="img" aria-label="Valores por categoria com barras e escala legível"></div>
+            <canvas id="categoryChart" height="190" hidden aria-hidden="true"></canvas>
+            <p class="chart-help">Mostramos as 5 maiores categorias; as restantes são agrupadas em “Outras”.</p>
           </article>
           <article class="panel">
             <div class="panel-heading">
-              <div><p class="eyebrow">Prioridades</p><h2>Itens que exigem ação</h2></div>
+              <div><p class="eyebrow">O QUE RESOLVER PRIMEIRO</p><h2>Produtos que precisam de ação</h2><p class="panel-description">Comece pelos vencidos, depois pelos itens sem estoque e pelos próximos do vencimento.</p></div>
               <button class="text-button" data-go-view="produtos">Ver todos →</button>
             </div>
             <div class="action-list" id="actionList"></div>
@@ -114,7 +276,7 @@
 
         <article class="panel full-panel">
           <div class="panel-heading">
-            <div><p class="eyebrow">Atividade recente</p><h2>Últimas movimentações</h2></div>
+            <div><p class="eyebrow">HISTÓRICO RECENTE</p><h2>Últimas atualizações realizadas</h2><p class="panel-description">Entradas aumentam o saldo; saídas e perdas reduzem.</p></div>
             <button class="text-button" data-go-view="movimentacoes">Abrir histórico →</button>
           </div>
           <div class="table-wrap"><table id="recentTable"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Valor</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
@@ -146,7 +308,7 @@
             <div class="filter-group"><label>Tipo<select id="movementTypeFilter"><option value="">Todos</option><option>Entrada</option><option>Saída</option><option>Perda</option><option>Ajuste +</option><option>Ajuste -</option></select></label><label>Período<select id="movementPeriodFilter"><option value="all">Todo o período</option><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option></select></label></div>
             <button class="button secondary" id="exportMovementsCsv">Exportar CSV</button>
           </div>
-          <div class="table-wrap"><table id="movementsTable"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Valor unitário</th><th>Total</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
+          <div class="table-wrap"><table id="movementsTable"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Valor unitário</th><th>Total</th><th>Observação</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
         </article>
       </section>
 
@@ -154,17 +316,103 @@
         <div class="section-intro"><div><p class="eyebrow">Gestão de perecíveis</p><h2>Calendário de vencimentos</h2><p>Acompanhe os lotes com prioridade e reduza perdas.</p></div></div>
         <div class="expiry-summary" id="expirySummary"></div>
         <div class="dashboard-grid">
-          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Linha do tempo</p><h2>Produtos por faixa de vencimento</h2></div></div><canvas id="expiryChart" height="280"></canvas></article>
+          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Linha do tempo</p><h2>Produtos por faixa de vencimento</h2></div></div><canvas id="expiryChart" height="162" aria-label="Quantidade de produtos por faixa de vencimento, escala automática"></canvas><p class="chart-help">Escala vertical: quantidade de produtos em cada faixa.</p></article>
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">Recomendação</p><h2>Plano de ação</h2></div></div><div class="recommendations" id="recommendations"></div></article>
         </div>
         <article class="panel full-panel"><div class="panel-heading"><div><p class="eyebrow">Lista priorizada</p><h2>Vencimentos</h2></div></div><div class="table-wrap"><table id="expiryTable"><thead><tr><th>Produto</th><th>Lote / SKU</th><th>Validade</th><th>Dias restantes</th><th>Estoque atual</th><th>Valor em risco</th><th>Prioridade</th></tr></thead><tbody></tbody></table></div></article>
+      </section>
+
+      <section class="view" id="alertas">
+        <div class="section-intro"><div><p class="eyebrow">CENTRAL DE REPOSIÇÃO</p><h2>Alertas de estoque</h2><p>Monitore produtos esgotados, itens com risco de acabar logo e mercadorias sazonais que merecem tratamento diferente.</p></div><button class="button secondary" data-open-modal="movementModal"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg> Nova movimentação</button></div>
+        <div class="alert-summary-grid" id="alertsSummary"></div>
+        <div class="alert-grid">
+          <article class="panel panel-wide">
+            <div class="panel-heading"><div><p class="eyebrow">AÇÃO IMEDIATA</p><h2>Reposição prioritária</h2><p class="panel-description">Use os botões para registrar entrada, ignorar alertas temporariamente, marcar um item como sazonal ou excluí-lo do cadastro.</p></div></div>
+            <div id="alertsAllList" class="alert-list" aria-live="polite"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">IGNORADOS</p><h2>Alertas pausados</h2><p class="panel-description">Produtos ignorados saem desta fila principal, mas podem voltar a alertar quando você desejar.</p></div></div>
+            <div id="alertsMutedList" class="alert-list compact" aria-live="polite"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="tendencias">
+        <section class="trends-hero" aria-labelledby="trendsTitle">
+          <div><span class="trends-eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-trend"></use></svg> ANÁLISE COM DADOS DO SEU ESTOQUE</span>
+            <h2 id="trendsTitle">Entenda o que faz um produto vender mais — ou menos.</h2>
+            <p>Compare <strong>demanda (saídas)</strong>, <strong>oferta (entradas)</strong>, <strong>preços praticados</strong> e eventos como anúncios, promoções, feriados e estação do ano. Informações externas são registradas por você, sem consulta automática à internet.</p>
+          </div><div class="trends-hero-mark" aria-hidden="true"><svg class="icon"><use href="#i-trend"></use></svg></div>
+        </section>
+        <div class="trends-filter panel">
+          <label>Produto analisado<select id="trendProduct" aria-label="Produto para análise de tendência"></select></label>
+          <label>Período de comparação<select id="trendPeriod"><option value="28" selected>28 dias (14 + 14)</option><option value="14">14 dias (7 + 7)</option><option value="60">60 dias (30 + 30)</option><option value="90">90 dias (45 + 45)</option></select></label>
+          <div class="trend-filter-note">Comparamos duas metades iguais do período. As saídas representam <b>demanda observada</b>, não procura não atendida.</div>
+        </div>
+        <div class="trend-metric-grid" id="trendMetrics" aria-live="polite"></div>
+        <div class="trend-main-grid">
+          <article class="panel trend-graph-panel">
+            <div class="panel-heading"><div><p class="eyebrow">OFERTA × DEMANDA</p><h2>Reposições e saídas no período</h2><p class="panel-description">Cada ponto representa um dia. Entradas de estoque e saídas registradas são exibidas em unidades.</p></div></div>
+            <div class="trend-legend"><span><i class="trend-dot sales"></i> Saídas (demanda)</span><span><i class="trend-dot supply"></i> Entradas (oferta)</span></div>
+            <canvas id="trendFlowChart" height="180" aria-label="Gráfico de entradas e saídas diárias do produto"></canvas>
+            <p class="chart-help" id="trendFlowNote">Escala ajustada automaticamente sem ocultar valores.</p>
+          </article>
+          <article class="panel trend-interpretation">
+            <div class="panel-heading"><div><p class="eyebrow">LEITURA DO CENÁRIO</p><h2>O que os dados sugerem?</h2></div></div>
+            <div id="trendInsights" class="trend-insights" aria-live="polite"></div>
+          </article>
+        </div>
+        <div class="trend-main-grid trend-second-grid">
+          <article class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">PREÇO × VOLUME</p><h2>Como o preço aparece nas vendas?</h2><p class="panel-description">Média do preço unitário e unidades vendidas em cada dia com saídas.</p></div></div>
+            <canvas id="trendPriceChart" height="175" aria-label="Gráfico de dispersão entre preço médio e quantidade vendida nos dias com saídas"></canvas>
+            <p class="chart-help" id="trendPriceNote">O preço vem do valor unitário registrado nas saídas, não apenas do preço atual no cadastro.</p>
+          </article>
+          <article class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">ÉPOCA DO ANO</p><h2>Sazonalidade e acontecimentos</h2><p class="panel-description">Eventos anotados e disponibilidade de histórico para comparar períodos.</p></div></div>
+            <div id="trendSeasonality" class="trend-insights"></div>
+          </article>
+        </div>
+        <section class="panel trend-events-block" aria-labelledby="trendEventsTitle">
+          <div class="panel-heading"><div><p class="eyebrow">FATORES EXTERNOS</p><h2 id="trendEventsTitle">Registre acontecimentos que podem alterar a procura</h2><p class="panel-description">Marque campanhas, descontos, feriados, concorrência, clima ou períodos sazonais para confrontar com o histórico de saídas.</p></div></div>
+          <form id="trendEventForm" class="trend-event-form">
+            <label class="wide-field">Nome do acontecimento<input id="trendEventTitle" type="text" maxlength="70" required placeholder="Ex.: Anúncio nas redes sociais"></label>
+            <label>Tipo<select id="trendEventType"><option value="campanha">Propaganda / campanha</option><option value="promocao">Promoção / desconto</option><option value="sazonalidade">Época do ano / feriado</option><option value="concorrencia">Concorrência</option><option value="clima">Clima / ambiente</option><option value="fornecedor">Fornecedor / disponibilidade</option><option value="outro">Outro acontecimento</option></select></label>
+            <label>Início<input id="trendEventStart" type="date" required></label>
+            <label>Fim<input id="trendEventEnd" type="date" required></label>
+            <label>Expectativa<select id="trendEventExpectation"><option value="aumento">Possível aumento</option><option value="queda">Possível queda</option><option value="incerto">Efeito incerto</option></select></label>
+            <label class="wide-field">Observação (opcional)<input id="trendEventNote" maxlength="150" placeholder="Ex.: desconto de 15%, campanha no Instagram, feriado local"></label>
+            <button class="button primary trend-add-event" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg> Adicionar evento</button>
+          </form>
+          <p class="trend-disclaimer">Os eventos são vinculados ao produto selecionado. A diferença observada entre períodos é <strong>associação, não comprovação de causa</strong>. Fatores como falta de estoque, outras campanhas e feriados podem influenciar o resultado.</p>
+          <div id="trendEventList" class="trend-events-list" aria-live="polite"></div>
+        </section>
+        <p class="trend-methodology"><svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg><span><strong>Como interpretar:</strong> as estimativas usam apenas o histórico local de movimentações (saídas como aproximação de demanda e entradas como reposição). Não há pesquisa automática de mercado, dados de concorrentes, clima ou tendências externas. Correlação não é causalidade; períodos curtos ou vendas interrompidas por falta de estoque reduzem a confiabilidade.</span></p>
+      </section>
+
+      <section class="view" id="usuarios">
+        <div class="section-intro"><div><p class="eyebrow">ACESSO E RESPONSABILIDADES</p><h2>Usuários e permissões</h2><p>Defina quem pode consultar dados, registrar movimentações e fazer alterações críticas.</p></div></div>
+        <div class="users-layout">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">NOVO ACESSO</p><h2>Criar usuário</h2></div></div>
+            <form id="createUserForm" class="users-form">
+              <label>Nome completo<input name="name" required maxlength="80" placeholder="Ex.: Maria Oliveira"></label>
+              <label>Usuário de acesso<input name="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]+" placeholder="Ex.: maria"></label>
+              <label>Senha provisória (mínimo 10 caracteres)<input type="password" name="password" autocomplete="new-password" required minlength="10" placeholder="Crie uma senha forte"></label>
+              <label>Perfil<select name="role" id="newUserRole"><option value="viewer">Consulta — somente leitura</option><option value="operator">Operador — registros</option><option value="admin">Administrador — acesso total</option></select></label>
+              <button type="submit" class="button primary">Criar conta</button>
+            </form>
+            <div class="user-help"><strong>Como funciona?</strong><p>Os usuários compartilham o mesmo estoque deste servidor. Senhas são protegidas; somente o administrador gerencia contas e permissões.</p></div>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">PESSOAS COM ACESSO</p><h2>Contas e privilégios</h2></div><span class="count-chip" id="userCount">0 usuários</span></div><div id="usersList" class="users-list"></div></section>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">TRANSPARÊNCIA</p><h2>Últimas alterações registradas</h2><p class="panel-description">Identifica quem realizou cada operação, com data e tipo de ação.</p></div></div><div id="auditList" class="audit-list"></div></section>
       </section>
 
       <section class="view" id="relatorios">
         <div class="section-intro"><div><p class="eyebrow">Indicadores para decisão</p><h2>Relatórios gerenciais</h2><p>Uma leitura rápida de giro, margem, investimento e desempenho diário.</p></div><button class="button secondary" id="printReport">Imprimir relatório</button></div>
         <div class="report-grid" id="reportCards"></div>
         <div class="dashboard-grid">
-          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Dia a dia</p><h2>Vendas por dia — últimos 31 dias</h2></div></div><canvas id="dailySalesChart" height="300"></canvas></article>
+          <article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">Dia a dia</p><h2>Vendas por dia — últimos 31 dias</h2></div></div><div class="report-chart-container"><canvas id="dailySalesChart" height="146" aria-label="Gráfico compacto de valores de venda por dia em reais"></canvas></div><p class="chart-help">Valores de saída registrados como venda, em R$ por dia. Gráfico de altura reduzida para facilitar a comparação.</p></article>
           <article class="panel"><div class="panel-heading"><div><p class="eyebrow">Ranking</p><h2>Produtos mais vendidos</h2></div></div><div class="ranking-list" id="rankingList"></div></article>
         </div>
         <article class="panel full-panel"><div class="panel-heading"><div><p class="eyebrow">Resumo completo</p><h2>Indicadores por produto</h2></div><button class="button secondary" id="exportReportCsv">Exportar relatório</button></div><div class="table-wrap"><table id="reportTable"><thead><tr><th>Produto</th><th>Comprado há</th><th>Estoque atual</th><th>Unidades vendidas</th><th>Giro</th><th>Receita</th><th>Custo vendido</th><th>Lucro bruto</th><th>Margem</th></tr></thead><tbody></tbody></table></div></article>
@@ -172,26 +420,74 @@
     </main>
   </div>
 
-  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
-    <div class="modal-card">
-      <div class="modal-heading"><div><p class="eyebrow">Cadastro</p><h2 id="productModalTitle">Novo produto</h2></div><button class="icon-button modal-close" aria-label="Fechar">×</button></div>
+  <div class="modal product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-card product-modal-card">
+      <div class="modal-heading product-modal-header">
+        <div><p class="eyebrow">CATÁLOGO • CONTROLE DE ESTOQUE</p><h2 id="productModalTitle">Cadastro completo do produto</h2><p>Identificação, preços, condições de venda, estoque e imagem em um único cadastro.</p></div>
+        <button type="button" class="icon-button modal-close" aria-label="Fechar janela">×</button>
+      </div>
       <form id="productForm">
         <input type="hidden" id="productId">
-        <div class="form-grid">
-          <label class="span-2">Nome do produto<input id="productName" required maxlength="80" placeholder="Ex.: Arroz integral 5 kg"></label>
-          <label>SKU<input id="productSku" required maxlength="24" placeholder="Ex.: ARR-001"></label>
-          <label>Categoria<input id="productCategory" required maxlength="40" placeholder="Ex.: Mercearia"></label>
-          <label>Fornecedor<input id="productSupplier" maxlength="60" placeholder="Ex.: Distribuidora Alfa"></label>
-          <label>Unidade<select id="productUnit"><option>un</option><option>kg</option><option>cx</option><option>pct</option><option>lt</option></select></label>
-          <label>Preço de custo (R$)<input id="productCost" required type="number" min="0" step="0.01"></label>
-          <label>Preço de venda (R$)<input id="productPrice" required type="number" min="0" step="0.01"></label>
-          <label>Estoque inicial<input id="productInitial" required type="number" min="0" step="1"></label>
-          <label>Estoque mínimo<input id="productMinimum" required type="number" min="0" step="1"></label>
-          <label>Data da compra<input id="productPurchase" required type="date"></label>
-          <label>Data de validade<input id="productExpiry" type="date"></label>
-          <label>Localização<input id="productLocation" maxlength="30" placeholder="Ex.: A1-P2"></label>
+        <div class="product-form-layout">
+          <div class="product-form-main">
+            <fieldset class="product-fieldset"><legend>01 • Identificação e organização</legend>
+              <div class="form-grid product-field-grid">
+                <label>Código / SKU <input id="productSku" required maxlength="24" placeholder="Ex.: REF-001"></label>
+                <label>Código de barras (EAN) <input id="productBarcode" maxlength="32" placeholder="Opcional"></label>
+                <label class="span-2">Descrição do produto <input id="productName" required maxlength="80" placeholder="Ex.: Refrigerante Coca-Cola Original 2 litros"></label>
+                <label>Fornecedor <input id="productSupplier" maxlength="60" placeholder="Ex.: Distribuidora Alfa"></label>
+                <label>Marca <input id="productBrand" maxlength="50" placeholder="Ex.: Coca-Cola"></label>
+                <label>Categoria <input id="productCategory" required maxlength="40" placeholder="Ex.: Bebidas"></label>
+                <label>Grupo <input id="productGroup" maxlength="45" placeholder="Ex.: Refrigerantes"></label>
+                <label>Subgrupo <input id="productSubgroup" maxlength="45" placeholder="Ex.: Cola"></label>
+                <label>Unidade <select id="productUnit"><option>un</option><option>kg</option><option>cx</option><option>pct</option><option>lt</option></select></label>
+                <label>Tamanho / conteúdo <input id="productSize" maxlength="40" placeholder="Ex.: 2 litros"></label>
+                <label>Embalagem <input id="productPackaging" maxlength="40" placeholder="Ex.: Garrafa PET"></label>
+              </div>
+            </fieldset>
+            <fieldset class="product-fieldset"><legend>02 • Preços, atacado e promoções</legend>
+              <div class="form-grid product-field-grid">
+                <label>Preço de compra (R$) <input id="productCost" type="number" required min="0" step="0.01"></label>
+                <label>Preço de venda (R$) <input id="productPrice" type="number" required min="0" step="0.01"></label>
+                <label>À vista (R$) <input id="productCashPrice" type="number" min="0" step="0.01" placeholder="Igual à venda"></label>
+                <label>A prazo (R$) <input id="productInstallmentPrice" type="number" min="0" step="0.01" placeholder="Igual à venda"></label>
+                <label>Preço atacado (R$) <input id="productWholesalePrice" type="number" min="0" step="0.01"></label>
+                <label>Atacado a partir de (un.) <input id="productWholesaleMinQty" type="number" min="0" step="1" value="6"></label>
+                <label>Comissão (%) <input id="productCommission" type="number" min="0" max="100" step="0.01" value="0"></label>
+                <label>Preço promocional (R$) <input id="productPromoPrice" type="number" min="0" step="0.01" placeholder="Opcional"></label>
+                <label>Início da promoção <input id="productPromoStart" type="date"></label>
+                <label>Fim da promoção <input id="productPromoEnd" type="date"></label>
+              </div>
+              <div class="profit-preview"><span>Lucro bruto por unidade <strong id="productProfitPreview">R$ 0,00</strong></span><span>Margem estimada <strong id="productProfitPercentPreview">0%</strong></span></div>
+            </fieldset>
+            <fieldset class="product-fieldset"><legend>03 • Estoque e comportamento no PDV</legend>
+              <div class="form-grid product-field-grid">
+                <label>Estoque inicial <input id="productInitial" required type="number" min="0" step="1"></label>
+                <label>Estoque mínimo <input id="productMinimum" required type="number" min="0" step="1"></label>
+                <label>Controlar estoque? <select id="productTrackStock"><option value="sim">Sim</option><option value="nao">Não</option></select></label>
+                <label>Usar balança? <select id="productUseScale"><option value="nao">Não</option><option value="sim">Sim (cadastro informativo)</option></select></label>
+                <label>Produto sazonal? <select id="productSeasonal"><option value="nao">Não • regular</option><option value="sim">Sim • sazonal</option></select></label>
+                <label>Mostrar no PDV? <select id="productShowPDV"><option value="sim">Sim</option><option value="nao">Não</option></select></label>
+                <label>Vender unidade avulsa? <select id="productIndividual"><option value="sim">Sim</option><option value="nao">Não • mínimo do atacado</option></select></label>
+                <label>PDV com mesas / comandas? <select id="productPdvTableMode"><option value="nao">Não utilizar</option><option value="sim">Sim • cadastro informativo</option></select></label>
+                <label>Data da compra <input id="productPurchase" required type="date"></label>
+                <label>Data da validade <input id="productExpiry" type="date"></label>
+                <label>Localização <input id="productLocation" maxlength="80" placeholder="Ex.: Corredor 1, prateleira 2"></label>
+                <label class="span-2">Composição / Ingredientes <textarea id="productIngredients" maxlength="500" rows="2" placeholder="Informe composição ou observações sobre ingredientes"></textarea></label>
+                <label class="span-2">Localização e observações adicionais <textarea id="productNote" maxlength="240" rows="2" placeholder="Notas para vendedores e estoquistas"></textarea></label>
+              </div>
+            </fieldset>
+          </div>
+          <aside class="product-photo-side"><div class="photo-sticky">
+            <div class="product-photo-frame"><img id="productImagePreview" alt="Prévia da foto do produto" hidden><span id="productImageEmpty">📦</span></div>
+            <h3>Foto do produto</h3><p>Escolha uma foto do computador ou informe o link de uma imagem HTTPS. As fotos do catálogo de demonstração são externas.</p>
+            <label class="photo-upload-button">Enviar foto <input id="productImageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+            <label>Link da foto (HTTPS) <input id="productImageUrl" type="text" autocomplete="off" placeholder="https://.../produto.jpg"></label>
+            <label>Fonte / créditos <input id="productImageCredit" maxlength="90" placeholder="Ex.: fotografia própria"></label>
+            <small>Imagens carregadas do computador são reduzidas e armazenadas no banco. Para publicações, use fotos com autorização do titular.</small>
+          </div></aside>
         </div>
-        <div class="form-actions"><button type="button" class="button ghost modal-close">Cancelar</button><button type="submit" class="button primary">Salvar produto</button></div>
+        <div class="form-actions product-form-actions"><button type="button" class="button ghost modal-close">Cancelar</button><button type="submit" class="button primary">Salvar cadastro completo</button></div>
       </form>
     </div>
   </div>
@@ -200,6 +496,7 @@
     <div class="modal-card compact">
       <div class="modal-heading"><div><p class="eyebrow">Atualização de saldo</p><h2 id="movementModalTitle">Registrar movimentação</h2></div><button class="icon-button modal-close" aria-label="Fechar">×</button></div>
       <form id="movementForm">
+        <input type="hidden" id="movementId">
         <div class="form-grid">
           <label class="span-2">Produto<select id="movementProduct" required></select></label>
           <label>Tipo<select id="movementType" required><option>Entrada</option><option>Saída</option><option>Perda</option><option>Ajuste +</option><option>Ajuste -</option></select></label>
@@ -213,8 +510,27 @@
     </div>
   </div>
 
+  <div id="authGate" class="auth-gate" aria-live="polite" style="display:none">
+    <div class="auth-shell"><div class="auth-brand"><span class="auth-logo">▣</span><div><strong>Estoque<span>Azul</span></strong><small>Gestão segura de estoque</small></div></div>
+      <div class="auth-card"><button type="button" class="lp-auth-back" id="landingBack">← Voltar ao site</button><p class="eyebrow">ACESSO PROTEGIDO</p><h1 id="authTitle">Entre para continuar</h1><p id="authDescription" class="auth-description">Utilize o usuário e a senha fornecidos pelo administrador.</p>
+        <form id="authForm" class="auth-fields"><label id="setupNameLabel" hidden>Nome do administrador<input id="setupName" autocomplete="name" placeholder="Seu nome"></label><label>Usuário<input id="authUsername" autocomplete="username" required minlength="3" placeholder="Seu login"></label><label>Senha<input id="authPassword" autocomplete="current-password" type="password" required minlength="10" placeholder="Sua senha"></label><button class="button primary auth-submit" type="submit" id="authSubmit">Entrar no sistema →</button><p class="auth-error" id="authError" role="alert"></p></form>
+      </div><div class="auth-footer">Acesso com permissões individuais • Seus dados ficam no servidor configurado</div>
+    </div>
+    <div class="auth-art" aria-hidden="true"><div class="auth-art-inner"><span class="auth-chip">ESTOQUE AZUL</span><h2>Controle, colaboração e segurança em um só lugar.</h2><p>Permita que cada pessoa veja apenas as ações que tem autorização para executar.</p><div class="auth-art-cards"><div><strong>Administrador</strong><span>Controle completo</span></div><div><strong>Operador</strong><span>Atualiza movimentações</span></div><div><strong>Consulta</strong><span>Acompanha os resultados</span></div></div></div></div>
+  </div>
+
+  <div class="modal" id="userPasswordModal" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+    <div class="modal-card compact"><div class="modal-heading"><div><p class="eyebrow">GESTÃO DE ACESSO</p><h2 id="passwordModalTitle">Redefinir senha</h2></div><button class="icon-button modal-close" aria-label="Fechar">×</button></div>
+    <form id="userPasswordForm" class="users-form"><input type="hidden" id="userPasswordId"><label>Nova senha (mínimo 10 caracteres)<input id="userNewPassword" type="password" minlength="10" required autocomplete="new-password"></label><label>Confirme a nova senha<input id="userConfirmPassword" type="password" minlength="10" required autocomplete="new-password"></label><div class="form-actions"><button type="button" class="button ghost modal-close">Cancelar</button><button type="submit" class="button primary">Atualizar senha</button></div></form>
+    </div>
+  </div>
+
   <input id="restoreInput" type="file" accept="application/json" hidden>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+  <script src="landing.js"></script>
+  <script src="trends.js"></script>
   <script src="script.js"></script>
+  <script src="pdv.js"></script>
 </body>
 </html>

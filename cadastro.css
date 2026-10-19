@@ -1,0 +1,48 @@
+/* V10 • formulário inspirado em ERP/PDV com foto e dados completos */
+.product-modal{padding:22px 16px;z-index:110!important}
+.product-modal-card{width:min(1220px,97vw)!important;max-width:1220px!important;max-height:94vh!important;padding:0!important;overflow:hidden!important;display:flex;flex-direction:column;background:#f6f9fd!important;border:1px solid #d6e3ef;border-radius:22px!important;box-shadow:0 32px 90px #071b32a6!important}
+.product-modal-header{padding:21px 26px 17px;border-bottom:1px solid #dce6f0;background:#fff;margin:0!important;flex:0 0 auto}
+.product-modal-header h2{margin:3px 0;font-size:1.4rem!important;color:#162f4a}
+.product-modal-header p:last-child{font-size:.8rem;color:#75889c;margin:6px 0 0}
+.product-modal-header .icon-button{border:1px solid #dbe8f2;background:#f5f9fc;border-radius:10px;width:37px;height:37px}
+#productForm{overflow-y:auto;min-height:0;display:flex;flex-direction:column}
+.product-form-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;align-items:start;gap:20px;padding:20px 24px}
+.product-form-main{display:grid;gap:16px;min-width:0}
+.product-fieldset{border:1px solid #dfeaf4;border-radius:15px;background:#fff;padding:16px 18px 20px;margin:0;box-shadow:0 4px 15px #244c7310;min-width:0}
+.product-fieldset legend{color:#116caf;font-size:.77rem;font-weight:850;text-transform:uppercase;letter-spacing:.055em;padding:0 8px;background:white}
+.product-field-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px 12px!important}
+.product-field-grid label{display:flex!important;flex-direction:column;gap:5px!important;min-width:0;font-size:.72rem!important;color:#536b80!important;font-weight:780!important}
+.product-field-grid label.span-2{grid-column:span 2}
+.product-field-grid input,.product-field-grid select,.product-field-grid textarea{width:100%;min-width:0!important;border:1px solid #d7e5ef;border-radius:9px;padding:10px 11px;min-height:38px;background:#fbfdff;color:#1c3550;font-size:.83rem!important;box-shadow:none;outline:none}
+.product-field-grid input:focus,.product-field-grid select:focus,.product-field-grid textarea:focus{border-color:#2d8bcf;box-shadow:0 0 0 3px #2d8bcf1d;background:#fff}
+.product-field-grid textarea{resize:vertical;min-height:65px}
+.profit-preview{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.profit-preview span{flex:1 0 190px;border:1px solid #d5f1e8;background:#f0faf6;border-radius:10px;padding:10px 14px;color:#507568;font-size:.74rem;display:grid;gap:5px}
+.profit-preview strong{font-size:1.04rem;color:#128164}
+.product-photo-side{position:sticky;top:2px;background:#fff;border:1px solid #dceaf4;border-radius:15px;padding:16px;box-shadow:0 6px 20px #274b7311}
+.product-photo-frame{height:230px;border-radius:14px;background:radial-gradient(circle at 50% 10%,#fff,#f1f6fc);border:1px dashed #cadcec;display:grid;place-items:center;overflow:hidden;position:relative}
+.product-photo-frame img{width:100%;height:100%;object-fit:contain;padding:12px}
+.product-photo-frame #productImageEmpty{font-size:4rem;filter:grayscale(.3)}
+.product-photo-side h3{font-size:1rem;margin:14px 0 5px;color:#163857}
+.product-photo-side p,.product-photo-side small{font-size:.73rem;line-height:1.5;color:#748a9e}
+.product-photo-side label:not(.photo-upload-button){display:grid;gap:6px;font-size:.72rem;font-weight:750;color:#587287;margin:13px 0}
+.product-photo-side input[type=text]{min-width:0;width:100%;font:inherit;padding:10px;border:1px solid #d7e5ef;border-radius:8px;color:#183b5a}
+.photo-upload-button{display:block;text-align:center;background:#e8f5ff;color:#1464a8;padding:11px;border:1px solid #bfddf2;border-radius:10px;font-weight:800;cursor:pointer;margin:14px 0}
+.photo-upload-button input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.product-photo-side small{display:block}
+.product-form-actions{position:sticky;bottom:0;z-index:3;background:#fff;border-top:1px solid #e1eaf3;padding:14px 24px!important;display:flex;justify-content:flex-end;gap:10px;margin:0!important}
+.product-form-actions .button{padding:12px 19px}
+.demo-banner{display:flex;align-items:center;gap:11px;flex-wrap:wrap;background:#fffaf0;border:1px solid #f0ddaf;border-radius:12px;padding:11px 15px;margin:15px 0;color:#795b2b;font-size:.76rem;font-weight:550}
+.demo-banner span{background:#fae6b8;color:#80520f;border-radius:7px;font-size:.65rem;font-weight:900;letter-spacing:.08em;padding:5px 8px}
+.demo-banner button{margin-left:auto;border:1px solid #e2c58a;background:#fff;border-radius:8px;padding:7px 10px;color:#7e5615;font-weight:800;cursor:pointer}
+.pos-product-visual img{width:100%;height:100%;object-fit:contain;padding:9px 16px 16px;background:rgba(255,255,255,.76)}
+.pos-product-visual .pos-img-fallback{font-size:3rem;display:grid;place-items:center;height:100%;width:100%}
+.pos-product-visual .pos-img-fallback[hidden]{display:none}
+.table-product-pic{width:31px;height:31px;display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;margin-right:8px;background:#f5f9fb;border:1px solid #e2edf4;border-radius:7px;overflow:hidden}
+.table-product-pic img{width:100%;height:100%;object-fit:contain}
+.table-product-pic .fallback-image{font-size:17px}
+@media(max-width:1010px){.product-field-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.product-form-layout{grid-template-columns:minmax(0,1fr) 230px;gap:12px;padding:15px}.product-fieldset{padding:14px}}
+@media(max-width:720px){.product-modal{padding:0}.product-modal-card{width:100vw!important;max-height:100vh!important;height:100vh!important;border-radius:0!important}.product-form-layout{grid-template-columns:1fr}.product-photo-side{position:static;order:-1}.product-photo-frame{height:150px}.product-field-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.product-field-grid label.span-2{grid-column:span 2}.product-modal-header{padding:13px 16px}.product-form-actions{padding:12px 14px!important}.product-photo-side small{margin-bottom:0}}
+@media(max-width:420px){.product-field-grid{grid-template-columns:1fr!important}.product-field-grid label.span-2{grid-column:span 1}.demo-banner button{margin:0}}
+
+.demo-banner [hidden]{display:none!important}
